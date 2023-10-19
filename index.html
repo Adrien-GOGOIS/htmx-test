@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HTMX</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>HTMX</h1>
+	<p>
+		The core of htmx is a set of attributes that allow you to issue AJAX requests directly from HTML:
+	</p>
+	<p>hx-get, hx-post, hx-delete, etc. </p>
+	<div>
+		<button hx-get="https://pokeapi.co/api/v2/ability/?limit=1&offset=1" hx-swap="afterend">
+			GET a pokemon
+		</button>
+		<p></p>
+	</div>
+	<div hx-post="/mouse" hx-trigger="mouseenter once">
+		[Here mouse! Hey mouse! Come here!]
+	</div>
+
+	<h2>Attributes</h2>
+	<input type="text" name="q"
+		hx-get="/trigger_delay"
+		hx-trigger="keyup changed delay:500ms"
+		hx-target="#search-results"
+		placeholder="Search..."
+	>
+	<div id="search-results"></div>
+
+	<h2>Filters</h2>
+	<button hx-get="/clicked" hx-trigger="click[ctrlKey]">
+		Control Click Me only !
+	</button>
+
+	<h2>Indicator</h2>
+	<div>
+		<button hx-get="/click" hx-indicator="#indicator">
+			Click Me!
+		</button>
+		<img id="indicator" class="htmx-indicator" src="/spinner.gif"/>
+	</div>
+	<script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
+</body>
+</html>
